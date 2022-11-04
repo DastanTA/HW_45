@@ -1,5 +1,7 @@
 from django.db import models
 
+STATUS_CHOICES = [('new', 'Новая'), ('in_progress', 'В процессе'), ('done', 'Сделано')]
+
 
 class ToDoList(models.Model):
     description = models.TextField(max_length=400, null=False, blank=False, verbose_name="Описание")

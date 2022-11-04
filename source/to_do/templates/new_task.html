@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HW_45</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="container">
+    <h1>New Task</h1>
+    <form action="/new" method="POST">
+        {% csrf_token %}
+        <label for="desc">Задача</label>
+        <input type="text" name="description" id="desc" required><br>
+        <label for="status">Статус</label>
+        <select id="status">
+            <option name="new">Новая</option>
+        </select><br>
+        <label for="deadline">Срок</label>
+        <input id="deadline" type="text" name="deadline" required>
+        <input type="submit" value="создать">
+    </form>
+    <p><a href="">На главную</a></p>
+
+</div>
+</body>
+</html>
