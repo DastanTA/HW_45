@@ -23,6 +23,8 @@ def create_new(request, *args, **kwargs):
         name = request.POST.get('name')
         status = request.POST.get('status')
         deadline = request.POST.get('deadline')
+        if deadline == "":
+            deadline = None
         description = request.POST.get('description')
         new_task = ToDoList.objects.create(name=name, status=status, deadline=deadline, description=description)
         return redirect('view_task', pk=new_task.id)
