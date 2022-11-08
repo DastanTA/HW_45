@@ -1,19 +1,17 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HW_46</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-<div class="container">
+{% extends 'base.html' %}
+
+{% block title %}
+    HW_46_index
+{% endblock %}
+
+{% block menu %}
+<li><a href="{% url 'add_task' %}">Добавить новую задачу</a></li>
+{% endblock %}
+
+{% block content %}
     <h1>To Do List</h1>
     {% for item in list_to_do %}
-        <p>Название: <a href="/task/{{ item.id }}">{{ item.name }}</a> </p>
+        <p>Название: <a href="{% url 'view_task' item.id %}">{{ item.name }}</a> </p>
         <p>Статус: {{ item.get_status_display }}</p>
         <p>Дата выполнения: {{ item.deadline|date:"d F Y"|default:"-" }}</p>
         <form action="/?id={{ item.id }}" method="POST">
@@ -22,8 +20,4 @@
         </form>
         <hr>
     {% endfor %}
-    <p><a href="/new">Добавить новую задачу</a></p>
-
-</div>
-</body>
-</html>
+{% endblock %}

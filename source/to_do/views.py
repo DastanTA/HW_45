@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 from to_do.models import ToDoList, STATUS_CHOICES
 
 
@@ -24,9 +25,9 @@ def create_new(request, *args, **kwargs):
         deadline = request.POST.get('deadline')
         description = request.POST.get('description')
         new_task = ToDoList.objects.create(name=name, status=status, deadline=deadline, description=description)
-        return HttpResponseRedirect(f'/task/{new_task.id}/')
+        return redirect('view_task', pk=new_task.id)
 
 
 def view_task(request, pk):
-    task = ToDoList.objects.get(pk=pk)
+    task = get_object_or_404(ToDoList, pk=pk)
     return render(request, 'task.html', {'task': task})

@@ -1,18 +1,12 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HW_46_create</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-<div class="container">
-    <h1>New Task</h1>
-    <form action="/new/" method="POST">
+{% extends 'base.html' %}
+
+{% block title %}
+HW_46_add
+{% endblock %}
+
+{% block content %}
+    <h1>Новая задача</h1>
+    <form action="{% url 'add_task' %}" method="POST">
         {% csrf_token %}
         <label for="name">Задача</label>
         <input type="text" name="name" id="name" required><br>
@@ -28,8 +22,4 @@
         <input id="deadline" type="text" name="deadline">
         <input type="submit" value="создать">
     </form>
-    <p><a href="/">На главную</a></p>
-
-</div>
-</body>
-</html>
+{% endblock %}
