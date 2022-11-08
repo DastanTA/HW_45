@@ -3,6 +3,11 @@ from to_do.models import ToDoList, STATUS_CHOICES
 
 
 def main_page(request):
+    if request.method == "POST":
+        task_id = request.GET.get('id')
+        print("!!!!!!!!!!!!!!!!", task_id)
+        task = ToDoList.objects.get(id=task_id)
+        task.delete()
     list_to_do = ToDoList.objects.order_by('created_at')
     context = {
         'list_to_do': list_to_do

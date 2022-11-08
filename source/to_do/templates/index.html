@@ -6,14 +6,21 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HW_45</title>
+    <title>HW_46</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 <div class="container">
     <h1>To Do List</h1>
     {% for item in list_to_do %}
-        <p>{{ item.name }} | {{ item.status }} | {{ item.deadline }}</p>
+        <p>Название: {{ item.name }} </p>
+        <p>Статус: {{ item.get_status_display }}</p>
+        <p>Дата выполнения: {{ item.deadline|date:"d F Y"|default:"-" }}</p>
+        <form action="/?id={{ item.id }}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="delete">
+        </form>
+        <hr>
     {% endfor %}
     <p><a href="/new">Добавить новую задачу</a></p>
 

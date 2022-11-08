@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HW_45</title>
+    <title>HW_46_create</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -21,11 +21,11 @@
         <label for="status">Статус</label>
         <select id="status" name="status">
             {% for value, status in statuses %}
-                <option name="{{ value }}">{{ status }}</option>
+                <option value="{{ value }}">{{ status }}</option>
             {% endfor %}
         </select><br>
         <label for="deadline">Срок</label>
-        <input id="deadline" type="text" name="deadline" required>
+        <input id="deadline" type="text" name="deadline">
         <input type="submit" value="создать">
     </form>
     <p><a href="/">На главную</a></p>

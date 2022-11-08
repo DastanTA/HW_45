@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HW_44_history</title>
+    <title>HW_46_created</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -14,7 +14,7 @@
     <p>Created at: {{ new_task.created_at }}</p>
     <p>Task: {{ new_task.name }}</p><br>
     <p>Description: {{ new_task.description }}</p><br>
-    <p>Deadline: {{ new_task.deadline }}</p><br>
+    <p>Deadline: {{ new_task.deadline|default:"-" }}</p><br>
     <p>status: {{ new_task.status }}</p><br>
     <br><br>
     <p><a href="/">На главную</a></p>

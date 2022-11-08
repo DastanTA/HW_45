@@ -6,7 +6,7 @@ class ToDoAdmin(admin.ModelAdmin):
     list_display = ['name', 'status', 'deadline']
     list_filter = ['status']
     search_fields = ['name']
-    fields = ['id', 'name', 'description', 'status', 'deadline', 'created_at']
+    exclude = []
     
 
 admin.site.register(ToDoList, ToDoAdmin)
