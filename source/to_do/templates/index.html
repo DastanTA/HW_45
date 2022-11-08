@@ -13,7 +13,7 @@
 <div class="container">
     <h1>To Do List</h1>
     {% for item in list_to_do %}
-        <p>Название: {{ item.name }} </p>
+        <p>Название: <a href="/task?id={{ item.id }}">{{ item.name }}</a> </p>
         <p>Статус: {{ item.get_status_display }}</p>
         <p>Дата выполнения: {{ item.deadline|date:"d F Y"|default:"-" }}</p>
         <form action="/?id={{ item.id }}" method="POST">

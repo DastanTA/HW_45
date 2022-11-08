@@ -15,7 +15,7 @@ def main_page(request):
 
 def create_new(request):
     if request.method == "GET":
-        return render(request, 'new_task.html', {'statuses': STATUS_CHOICES})
+        return render(request, 'create_task.html', {'statuses': STATUS_CHOICES})
     elif request.method == "POST":
         name = request.POST.get('name')
         status = request.POST.get('status')
@@ -23,4 +23,9 @@ def create_new(request):
         description = request.POST.get('description')
         new_task = ToDoList.objects.create(name=name, status=status, deadline=deadline, description=description)
         context = {'new_task': new_task}
-        return render(request, 'info.html', context)
+        return render(request, 'task.html', context)
+
+def view_task(request):
+    task_id = request.GET.get('id')
+    task = ToDoList.objects.get(id=task_id)
+    return render(request, 'task.html', {'task': task})
