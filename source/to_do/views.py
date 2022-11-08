@@ -13,9 +13,10 @@ def create_new(request):
     if request.method == "GET":
         return render(request, 'new_task.html', {'statuses': STATUS_CHOICES})
     elif request.method == "POST":
-        description = request.POST.get('description')
+        name = request.POST.get('name')
         status = request.POST.get('status')
         deadline = request.POST.get('deadline')
-        new_task = ToDoList.objects.create(description=description, status=status, deadline=deadline)
+        description = request.POST.get('description')
+        new_task = ToDoList.objects.create(name=name, status=status, deadline=deadline, description=description)
         context = {'new_task': new_task}
         return render(request, 'info.html', context)

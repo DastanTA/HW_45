@@ -13,7 +13,7 @@
 <div class="container">
     <h1>To Do List</h1>
     {% for item in list_to_do %}
-        <p>{{ item.description }} | {{ item.status }} | {{ item.deadline }}</p>
+        <p>{{ item.name }} | {{ item.status }} | {{ item.deadline }}</p>
     {% endfor %}
     <p><a href="/new">Добавить новую задачу</a></p>
 
