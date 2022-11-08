@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from to_do.models import ToDoList, STATUS_CHOICES
 
 
@@ -13,7 +14,8 @@ def main_page(request):
     }
     return render(request, 'index.html', context)
 
-def create_new(request):
+
+def create_new(request, *args, **kwargs):
     if request.method == "GET":
         return render(request, 'create_task.html', {'statuses': STATUS_CHOICES})
     elif request.method == "POST":
@@ -22,10 +24,9 @@ def create_new(request):
         deadline = request.POST.get('deadline')
         description = request.POST.get('description')
         new_task = ToDoList.objects.create(name=name, status=status, deadline=deadline, description=description)
-        context = {'new_task': new_task}
-        return render(request, 'task.html', context)
+        return HttpResponseRedirect(f'/task/{new_task.id}/')
 
-def view_task(request):
-    task_id = request.GET.get('id')
-    task = ToDoList.objects.get(id=task_id)
+
+def view_task(request, pk):
+    task = ToDoList.objects.get(pk=pk)
     return render(request, 'task.html', {'task': task})

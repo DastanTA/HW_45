@@ -6,5 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_page),
     path('new/', create_new),
-    path('task/', view_task)
+    path('task/<int:pk>', view_task)
 ]

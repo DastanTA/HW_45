@@ -11,11 +11,11 @@
 </head>
 <body>
 <div class="container">
-    <p>Created at: {{ task.created_at }}</p>
-    <p>Task: {{ task.name }}</p><br>
-    <p>Description: {{ task.description }}</p><br>
-    <p>Deadline: {{ task.deadline|default:"-" }}</p><br>
-    <p>status: {{ task.status }}</p><br>
+    <p>Создано: {{ task.created_at }}</p>
+    <p>Задача: {{ task.name }}</p><br>
+    <p>Описание: {{ task.description }}</p><br>
+    <p>Дата выполнения: {{ task.deadline|date:"d F Y"|default:"-" }}</p><br>
+    <p>Статус: {{ task.get_status_display }}</p><br>
     <br><br>
     <p><a href="/">На главную</a></p>
 </div>
