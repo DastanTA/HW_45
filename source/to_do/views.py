@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from to_do.models import ToDoList
+from to_do.models import ToDoList, STATUS_CHOICES
 
 
 def main_page(request):
@@ -11,7 +11,7 @@ def main_page(request):
 
 def create_new(request):
     if request.method == "GET":
-        return render(request, 'new_task.html')
+        return render(request, 'new_task.html', {'statuses': STATUS_CHOICES})
     elif request.method == "POST":
         description = request.POST.get('description')
         status = request.POST.get('status')

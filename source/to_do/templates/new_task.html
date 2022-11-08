@@ -12,19 +12,21 @@
 <body>
 <div class="container">
     <h1>New Task</h1>
-    <form action="/new" method="POST">
+    <form action="/new/" method="POST">
         {% csrf_token %}
         <label for="desc">Задача</label>
         <input type="text" name="description" id="desc" required><br>
         <label for="status">Статус</label>
-        <select id="status">
-            <option name="new">Новая</option>
+        <select id="status" name="status">
+            {% for value, status in statuses %}
+                <option name="{{ value }}">{{ status }}</option>
+            {% endfor %}
         </select><br>
         <label for="deadline">Срок</label>
         <input id="deadline" type="text" name="deadline" required>
         <input type="submit" value="создать">
     </form>
-    <p><a href="">На главную</a></p>
+    <p><a href="/">На главную</a></p>
 
 </div>
 </body>
