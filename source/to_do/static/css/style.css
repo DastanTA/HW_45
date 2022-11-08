@@ -1,5 +1,12 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    margin-top: 60px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 p {
@@ -11,5 +18,48 @@ p.warning {
     color: red
 }
 
+.navbar {
+    display: block;
+    background: #6a7dff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    font-size: 0;
+    box-sizing: border-box;
+    padding: 7px 30px;
+}
 
+.menu {
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    color: #fffee8;
+}
 
+.menu li {
+    display: inline-block;
+}
+
+.menu a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    padding: 5px 15px;
+}
+
+.menu a:hover {
+    color: #ffc122;
+    text-decoration: underline;
+}
+
+.task_in_index {
+    text-decoration: none;
+}
+
+.task_in_index:hover {
+    color: #ffc122;
+    text-decoration: underline;
+}
