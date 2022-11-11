@@ -7,19 +7,6 @@ HW_46_add
 {% block content %}
     <h1>Новая задача</h1>
     <form action="{% url 'add_task' %}" method="POST">
-        {% csrf_token %}
-        <label for="name">Задача</label>
-        <input type="text" name="name" id="name" required><br>
-        <label for="desc">Описание</label>
-        <textarea name="description" id="desc" rows="5" cols="30"></textarea><br>
-        <label for="status">Статус</label>
-        <select id="status" name="status">
-            {% for value, status in statuses %}
-                <option value="{{ value }}">{{ status }}</option>
-            {% endfor %}
-        </select><br>
-        <label for="deadline">К сроку</label>
-        <input id="deadline" type="text" name="deadline"><br><br>
-        <input type="submit" value="создать">
+        {% include 'partial/task_form.html' with button_text='Создать' %}
     </form>
 {% endblock %}

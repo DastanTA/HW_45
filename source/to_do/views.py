@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from to_do.models import ToDoList, STATUS_CHOICES
+from to_do.forms import TaskForm
 
 
 def main_page(request):
@@ -14,7 +15,8 @@ def main_page(request):
 
 def create_new(request, *args, **kwargs):
     if request.method == "GET":
-        return render(request, 'create_task.html', {'statuses': STATUS_CHOICES})
+        form = TaskForm()
+        return render(request, 'create_task.html', {'form': form})
     elif request.method == "POST":
         name = request.POST.get('name')
         status = request.POST.get('status')
@@ -34,7 +36,13 @@ def view_task(request, pk):
 def update_view(request, pk):
     task = get_object_or_404(ToDoList, pk=pk)
     if request.method == "GET":
-        context = {"task": task, 'statuses': STATUS_CHOICES}
+        form = TaskForm(initial={
+            'name': task.name,
+            'description': task.description,
+            'status': task.status,
+            'deadline': task.deadline
+        })
+        context = {"task": task, 'form': form}
         return render(request, "update.html", context)
     elif request.method == "POST":
         task.name = request.POST.get("name")
