@@ -4,6 +4,11 @@
 HW_46_{{ task.name }}
 {% endblock %}
 
+{% block menu %}
+    <li><a href="{% url 'main' %}">Home</a>
+    <li><a href="{% url 'update_task' task.pk %}">Edit</a></li>
+{% endblock %}
+
 {% block content %}
     <p>Создано: {{ task.created_at }}</p>
     <p>Задача: {{ task.name }}</p><br>

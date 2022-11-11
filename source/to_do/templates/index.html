@@ -18,6 +18,7 @@
             {% csrf_token %}
             <input type="submit" value="delete">
         </form>
+        <a class="update" href="{% url 'update_task' item.id %}">update</a>
         <hr>
     {% endfor %}
 {% endblock %}

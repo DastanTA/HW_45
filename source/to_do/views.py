@@ -37,7 +37,8 @@ def view_task(request, pk):
 def update_view(request, pk):
     task = get_object_or_404(ToDoList, pk=pk)
     if request.method == "GET":
-        return render(request, "update.html", {"task": task})
+        context = {"task": task, 'statuses': STATUS_CHOICES}
+        return render(request, "update.html", context)
     elif request.method == "POST":
         task.name = request.POST.get("name")
         task.description = request.POST.get("description")
