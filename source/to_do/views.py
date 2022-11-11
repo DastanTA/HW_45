@@ -33,3 +33,15 @@ def create_new(request, *args, **kwargs):
 def view_task(request, pk):
     task = get_object_or_404(ToDoList, pk=pk)
     return render(request, 'task.html', {'task': task})
+
+def update_view(request, pk):
+    task = get_object_or_404(ToDoList, pk=pk)
+    if request.method == "GET":
+        return render(request, "update.html", {"task": task})
+    elif request.method == "POST":
+        task.name = request.POST.get("name")
+        task.description = request.POST.get("description")
+        task.status = request.POST.get("status")
+        task.deadline = request.POST.get("deadline")
+        task.save()
+        return redirect("view_task", pk=task.pk)
