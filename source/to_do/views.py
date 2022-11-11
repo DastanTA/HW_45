@@ -5,10 +5,6 @@ from to_do.models import ToDoList, STATUS_CHOICES
 
 
 def main_page(request):
-    if request.method == "POST":
-        task_id = request.GET.get('id')
-        task = ToDoList.objects.get(id=task_id)
-        task.delete()
     list_to_do = ToDoList.objects.order_by('created_at')
     context = {
         'list_to_do': list_to_do
@@ -34,6 +30,7 @@ def view_task(request, pk):
     task = get_object_or_404(ToDoList, pk=pk)
     return render(request, 'task.html', {'task': task})
 
+
 def update_view(request, pk):
     task = get_object_or_404(ToDoList, pk=pk)
     if request.method == "GET":
@@ -46,3 +43,12 @@ def update_view(request, pk):
         task.deadline = request.POST.get("deadline")
         task.save()
         return redirect("view_task", pk=task.pk)
+
+
+def delete_task(request, pk):
+    task = get_object_or_404(ToDoList, pk=pk)
+    if request.method == 'GET':
+        return render(request, 'delete.html', context={'task': task})
+    elif request.method == 'POST':
+        task.delete()
+        return redirect('main')

@@ -7,6 +7,7 @@ HW_46_{{ task.name }}
 {% block menu %}
     <li><a href="{% url 'main' %}">Home</a>
     <li><a href="{% url 'update_task' task.pk %}">Edit</a></li>
+    <li><a href="{% url 'delete_task' task.pk %}">Delete</a></li>
 {% endblock %}
 
 {% block content %}
